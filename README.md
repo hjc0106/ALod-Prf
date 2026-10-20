@@ -6,7 +6,7 @@ $$
 R_{\mathrm{phy}}^{\mathrm{detail}}=\max(R_{\mathrm{kernel}}^{\mathrm{detail}},R_{\mathrm{spacing}}^{\mathrm{detail}})
 $$
 
-P50 与 P90 分开取较大值。这个最大值作用在软加权汇总之后的两个数上。
+P50 与 P90 在软加权汇总之后分开取较大值。完整计算式见下方。
 
 ## 安装
 
@@ -39,13 +39,77 @@ summary = summarize_detail(
 print(summary["kernel_p50"], summary["spacing_p50"], summary["phy_p50"])
 ```
 
-## 冻结规则
+## 计算公式
 
-- 展开且子/父方向尺度比 $<0.99$ 为细核；$(0.99,1.01]$ 为相近；$>1.01$ 为变粗；未展开为保留。尺度系数是 3.77。
-- 组内 P50/P90 是可见权重的离散逆 CDF，`searchsorted` 取左侧。
-- 间距是切平面上 6 个互不重合中心的平均距离。近重合邻居不占名额，邻居不足时留空，不减小 k。第六近邻碰到搜索边界时，该中心不进入分位数。
-- 软权重 $g=\mathrm{clip}(\Delta E/0.02,0,1)$，$w=(1/N)[(1-\lambda)+\lambda g]$。没有测到的 $\Delta E$ 不补 0。$N$ 由 `planned` 给出。
-- 可见权重、$\Delta E$ 和有效性由调用方传入。本库不渲染。
+方向 $\theta$ 用 ROI 的两条切向合成，不再单位化：
+
+$$
+t=\cos\theta\, t_1+\sin\theta\, t_2.
+$$
+
+单个高斯的方向尺度是切向标准差乘 $3.77$。$\Sigma_i$ 是该高斯的世界坐标协方差。
+
+$$
+\sigma_i=3.77\sqrt{t^{\mathsf T}\Sigma_i t},\qquad
+\rho_i=\frac{\sigma_i^{\mathrm{child}}}{\sigma_i^{\mathrm{parent}}}.
+$$
+
+展开且 $\rho_i<0.99$ 的子节点进入细核组。$\rho_i\in[0.99,1.01]$ 为相近，$\rho_i>1.01$ 为变粗，未展开为保留。后三类不进入下面的分位数。
+
+组内分位数是可见权重的离散逆 CDF。把细核节点按数值从小到大排列，权重为 $w_i$，
+
+$$
+F(k)=\frac{\sum_{i=1}^{k} w_{(i)}}{\sum_i w_i}.
+$$
+
+$Q_q$ 取第一个满足 $F(k)\ge q$ 的数值。局部组合 $j$ 的核指标是
+
+$$
+R_{\mathrm{kernel},j,50}^{\mathrm{detail}}=Q_{0.5}^{\mathrm{visible}}(\sigma_i),\qquad
+R_{\mathrm{kernel},j,90}^{\mathrm{detail}}=Q_{0.9}^{\mathrm{visible}}(\sigma_i).
+$$
+
+间距在同一张切平面上计算。对细核中心 $u_i$，在当前层全部同表面中心中取 6 个其他中心；与查询点或已选邻居距离不超过 $\varepsilon$ 的中心不占名额。$\varepsilon$ 默认是 ROI 短边的 $10^{-4}$。
+
+$$
+s_i=\frac{1}{6}\sum_{r=1}^{6}\lVert u_i-u_{n_r}\rVert.
+$$
+
+不足 6 个时 $s_i$ 留空，不减小 $k$。第六近邻距离达到切向缓冲边界时，该中心不进入分位数。局部间距是
+
+$$
+R_{\mathrm{spacing},j,50}^{\mathrm{detail}}=Q_{0.5}^{\mathrm{visible}}(s_i),\qquad
+R_{\mathrm{spacing},j,90}^{\mathrm{detail}}=Q_{0.9}^{\mathrm{visible}}(s_i).
+$$
+
+场景汇总先做颜色软权重。$\Delta E_j$ 未测量时该项不进入求和，也不记为 0。$N$ 是计划局部数，实验中为 45。
+
+$$
+g_j=\mathrm{clip}\!\left(\frac{\Delta E_j}{0.02},0,1\right),\qquad
+w_j=\frac{1}{N}\big[(1-\lambda)+\lambda g_j\big].
+$$
+
+把有效局部的 $R_{\cdot,j,q}^{\mathrm{detail}}$ 按数值排序。加权中位数是累积权重第一次达到总权重一半时的那个数值：
+
+$$
+R_{\cdot,q}^{\mathrm{detail}}
+=\min\left\{v:\sum_{R_{\cdot,j,q}^{\mathrm{detail}}\le v} w_j
+\ge \frac{1}{2}\sum_j w_j\right\}.
+$$
+
+物理项在汇总之后、按分位数分别取较大值：
+
+$$
+R_{\mathrm{phy},50}^{\mathrm{detail}}
+=\max\big(R_{\mathrm{kernel},50}^{\mathrm{detail}},R_{\mathrm{spacing},50}^{\mathrm{detail}}\big),
+$$
+
+$$
+R_{\mathrm{phy},90}^{\mathrm{detail}}
+=\max\big(R_{\mathrm{kernel},90}^{\mathrm{detail}},R_{\mathrm{spacing},90}^{\mathrm{detail}}\big).
+$$
+
+可见权重、$\Delta E$ 和某一局部是否有效由调用方传入。本库不渲染。
 
 ## 测试结果
 
