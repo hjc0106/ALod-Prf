@@ -1,0 +1,14 @@
+[project]
+name = "alod-mtf"
+version = "1.0.0"
+description = "MTF v1: quadrature harmonic gain and MTF25/MTF50 threshold crossing."
+readme = "README.md"
+requires-python = ">=3.10"
+dependencies = ["numpy"]
+
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[tool.setuptools.packages.find]
+include = ["mtf*"]
