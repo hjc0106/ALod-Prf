@@ -1,0 +1,21 @@
+[project]
+name = "alod-prf"
+version = "1.0.0"
+description = "PRF v1: R_obs, R_kernel, R_spacing, and R_phys = max of the three."
+readme = "README.md"
+requires-python = ">=3.10"
+dependencies = ["numpy", "scipy"]
+
+[project.optional-dependencies]
+spotcheck = ["Pillow"]
+depth = ["torch", "gsplat==1.4.0", "ninja"]
+
+[project.scripts]
+alod-prf = "prf.__main__:main"
+
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[tool.setuptools.packages.find]
+include = ["prf*"]
