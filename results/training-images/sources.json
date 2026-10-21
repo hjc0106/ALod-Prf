@@ -1,0 +1,56 @@
+[
+  {
+    "scene": "kitchen",
+    "file": "kitchen.jpg",
+    "source_frame": "DSCF0796.JPG",
+    "source_folder": "images_2",
+    "training_manifest": "mipnerf360/processed/kitchen_l0_l5_v1/training_transforms.json",
+    "selection": "middle entry of training frames",
+    "sha256": "91a0825c7f142480b7cdab95b0bbed0c913cf13effbf36fcf006d251275d5b47"
+  },
+  {
+    "scene": "room",
+    "file": "room.jpg",
+    "source_frame": "DSCF4823.JPG",
+    "source_folder": "images_2",
+    "training_manifest": "mipnerf360/processed/room_l0_l5_v1/training_transforms.json",
+    "selection": "middle entry of training frames",
+    "sha256": "43c85908a1acc278a5af581e7bd75c5f4bb5bb3fdd021697948f5b72f2daf14c"
+  },
+  {
+    "scene": "garden",
+    "file": "garden.jpg",
+    "source_frame": "DSC08048.JPG",
+    "source_folder": "images_4",
+    "training_manifest": "mipnerf360/processed/garden_l0_l5_v1/training_transforms.json",
+    "selection": "middle entry of training frames",
+    "sha256": "e82687c2f3dbb217309555b92f0a7ce1edf99fbcef57a9082b92eada1691d67a"
+  },
+  {
+    "scene": "counter",
+    "file": "counter.jpg",
+    "source_frame": "DSCF5978.JPG",
+    "source_folder": "images_2",
+    "training_manifest": "mipnerf360/processed/counter_l0_l5_v1/training_transforms.json",
+    "selection": "middle entry of training frames",
+    "sha256": "60d67924d163ed45d65975625488e3e3bc8779cd006895ea748c20a3aa64c51f"
+  },
+  {
+    "scene": "bonsai",
+    "file": "bonsai.jpg",
+    "source_frame": "DSCF5711.JPG",
+    "source_folder": "images_2",
+    "training_manifest": "mipnerf360/processed/bonsai_l0_l5_v1/training_transforms.json",
+    "selection": "middle entry of training frames",
+    "sha256": "31dfde0289877d304ed3e890bf3b2c943f167a685e430c2cfa1574e4854abf82"
+  },
+  {
+    "scene": "bicycle",
+    "file": "bicycle.jpg",
+    "source_frame": "_DSC8777.JPG",
+    "source_folder": "images_4",
+    "training_manifest": "mipnerf360/processed/bicycle_l0_l5_v1/training_transforms.json",
+    "selection": "middle entry of training frames",
+    "sha256": "97b8177884bb9e6cbc0d9a5b622277cf19b37cd33948e1c5ff1f56159441cd34"
+  }
+]
