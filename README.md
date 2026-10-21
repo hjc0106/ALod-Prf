@@ -3,10 +3,10 @@
 细核组上的三个增量指标。它们描述同一次层级加细里、方向尺度变小的那批高斯，不替代 v1 的全场景 patch 统计。
 
 $$
-R_{\mathrm{phy}}^{\mathrm{detail}}=\max(R_{\mathrm{kernel}}^{\mathrm{detail}},R_{\mathrm{spacing}}^{\mathrm{detail}})
+R_{\mathrm{phy}}^{\mathrm{detail}}=\max(R_{\mathrm{obs}}^{\mathrm{detail}},R_{\mathrm{kernel}}^{\mathrm{detail}},R_{\mathrm{spacing}}^{\mathrm{detail}})
 $$
 
-P50 与 P90 在软加权汇总之后分开取较大值。完整计算式见下方。
+P50 与 P90 在软加权汇总之后分开取三项的较大值。三项使用同一批局部和同一套权重。完整计算式见下方。
 
 ## 安装
 
@@ -101,12 +101,12 @@ $$
 
 $$
 R_{\mathrm{phy},50}^{\mathrm{detail}}
-=\max\big(R_{\mathrm{kernel},50}^{\mathrm{detail}},R_{\mathrm{spacing},50}^{\mathrm{detail}}\big),
+=\max\big(R_{\mathrm{obs},50}^{\mathrm{detail}},R_{\mathrm{kernel},50}^{\mathrm{detail}},R_{\mathrm{spacing},50}^{\mathrm{detail}}\big),
 $$
 
 $$
 R_{\mathrm{phy},90}^{\mathrm{detail}}
-=\max\big(R_{\mathrm{kernel},90}^{\mathrm{detail}},R_{\mathrm{spacing},90}^{\mathrm{detail}}\big).
+=\max\big(R_{\mathrm{obs},90}^{\mathrm{detail}},R_{\mathrm{kernel},90}^{\mathrm{detail}},R_{\mathrm{spacing},90}^{\mathrm{detail}}\big).
 $$
 
 可见权重、$\Delta E$ 和某一局部是否有效由调用方传入。本库不渲染。
@@ -123,14 +123,7 @@ $$
 
 细核中心先投影到冻结平面再查询。局部值仍是可见权重逆 CDF，场景汇总仍用上面的 $g\_j,w\_j$。没有有效相机对就留空。只做视锥筛选时，结果必须标明遮挡尚未验证。
 
-三分量候选是另一个函数 `detail_physical_three`，不替换上面的两分量 `detail_physical`：
-
-$$
-R_{\mathrm{phy},q}^{\mathrm{detail,3}}
-=\max(R_{\mathrm{obs},q}^{\mathrm{detail}},R_{\mathrm{kernel},q}^{\mathrm{detail}},R_{\mathrm{spacing},q}^{\mathrm{detail}}).
-$$
-
-三项必须来自同一批局部、同一套权重。Mip-NeRF360 原六层、$\lambda=0.5$ 的 60 个有效局部里，观测 P50/P90 都小于核和间距，因此这一轮三分量数值等于两分量。Kitchen 观测 P50 停在 0.00304 附近；Room 约 0.0068 到 0.0092；Garden 约 0.0059 到 0.0151。这些起伏来自细核组的位置和权重，不是相机变化。
+`detail_physical` 就是上面的三分量最大值。Mip-NeRF360 原六层、$\lambda=0.5$ 的 60 个有效局部里，观测 P50/P90 都小于核和间距，所以这一轮物理项的数值由核或间距决定。Kitchen 观测 P50 停在 0.00304 附近；Room 约 0.0068 到 0.0092；Garden 约 0.0059 到 0.0151。这些起伏来自细核组的位置和权重，不是相机变化。
 
 ## 测试结果
 
@@ -164,7 +157,7 @@ $$R_{\mathrm{spacing}}^{\mathrm{detail}}$$
 
 $$R_{\mathrm{phy}}^{\mathrm{detail}}$$
 
-P50 取核与间距 P50 的较大值，P90 同样。
+P50 取观测、核、间距三项 P50 的较大值，P90 同样。这一轮观测更小，表中的数由核或间距决定。
 
 | 层级对 | Kitchen P50 / P90 | Room P50 / P90 | Garden P50 / P90 |
 |---|---:|---:|---:|

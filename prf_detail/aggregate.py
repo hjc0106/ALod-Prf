@@ -2,7 +2,7 @@
 
 Color gain is g = clip(deltaE / 0.02, 0, 1). Each planned local has base weight
 1/planned. Unmeasured deltaE is left out rather than treated as zero.
-R_phy P50 is max(kernel P50, spacing P50); P90 is the same comparison.
+R_phy P50 is max(obs P50, kernel P50, spacing P50); P90 is the same comparison.
 """
 from __future__ import annotations
 
@@ -39,19 +39,8 @@ def aggregate_quantiles(values, delta_e, eligible, *, lam: float = 0.5, planned:
     return inverse_cdf_median(items)
 
 
-def detail_physical(kernel_p50, kernel_p90, spacing_p50, spacing_p90) -> dict[str, float | None]:
-    """Published two-component physical term. Observation is not included."""
-
-    def larger(left, right):
-        if left is None or right is None:
-            return None
-        return float(max(left, right))
-
-    return {"p50": larger(kernel_p50, spacing_p50), "p90": larger(kernel_p90, spacing_p90)}
-
-
-def detail_physical_three(obs_p50, obs_p90, kernel_p50, kernel_p90, spacing_p50, spacing_p90) -> dict[str, float | None]:
-    """Candidate max of observation, kernel and spacing. Does not replace detail_physical."""
+def detail_physical(obs_p50, obs_p90, kernel_p50, kernel_p90, spacing_p50, spacing_p90) -> dict[str, float | None]:
+    """R_phy^detail = max(R_obs^detail, R_kernel^detail, R_spacing^detail), per quantile."""
 
     def larger(*values):
         if any(value is None for value in values):
@@ -64,13 +53,22 @@ def detail_physical_three(obs_p50, obs_p90, kernel_p50, kernel_p90, spacing_p50,
     }
 
 
-def summarize_detail(kernel_p50, kernel_p90, spacing_p50, spacing_p90, delta_e, eligible, *, lam: float = 0.5, planned: int | None = None) -> dict[str, float | None]:
+def detail_physical_three(obs_p50, obs_p90, kernel_p50, kernel_p90, spacing_p50, spacing_p90) -> dict[str, float | None]:
+    """Alias of detail_physical. Kept so earlier three-component calls stay valid."""
+    return detail_physical(obs_p50, obs_p90, kernel_p50, kernel_p90, spacing_p50, spacing_p90)
+
+
+def summarize_detail(obs_p50, obs_p90, kernel_p50, kernel_p90, spacing_p50, spacing_p90, delta_e, eligible, *, lam: float = 0.5, planned: int | None = None) -> dict[str, float | None]:
+    o50 = aggregate_quantiles(obs_p50, delta_e, eligible, lam=lam, planned=planned)
+    o90 = aggregate_quantiles(obs_p90, delta_e, eligible, lam=lam, planned=planned)
     k50 = aggregate_quantiles(kernel_p50, delta_e, eligible, lam=lam, planned=planned)
     k90 = aggregate_quantiles(kernel_p90, delta_e, eligible, lam=lam, planned=planned)
     s50 = aggregate_quantiles(spacing_p50, delta_e, eligible, lam=lam, planned=planned)
     s90 = aggregate_quantiles(spacing_p90, delta_e, eligible, lam=lam, planned=planned)
-    physical = detail_physical(k50, k90, s50, s90)
+    physical = detail_physical(o50, o90, k50, k90, s50, s90)
     return {
+        "obs_p50": o50,
+        "obs_p90": o90,
         "kernel_p50": k50,
         "kernel_p90": k90,
         "spacing_p50": s50,
