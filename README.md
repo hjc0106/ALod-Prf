@@ -111,6 +111,27 @@ $$
 
 可见权重、$\Delta E$ 和某一局部是否有效由调用方传入。本库不渲染。
 
+## 观测项
+
+$R\_{\mathrm{obs}}^{\mathrm{detail}}$ 是细核组所在表面位置上的训练图像采样支持。训练相机不随层级增加，所以它不是新增观测分辨率。
+
+在固定切平面的点 $x$ 上，相机 $c$ 的投影雅可比为 $J\_c(x)$，最弱方向的世界尺度是 $r\_c(x)=1/\sigma\_{\min}(J\_c(x))$。在视锥内可见、且夹角至少 $12^\circ$ 的真实训练相机对中，
+
+$$
+r_{\mathrm{obs}}(x)=\min_{(a,b)}\max(r_a(x),r_b(x)).
+$$
+
+细核中心先投影到冻结平面再查询。局部值仍是可见权重逆 CDF，场景汇总仍用上面的 $g\_j,w\_j$。没有有效相机对就留空。只做视锥筛选时，结果必须标明遮挡尚未验证。
+
+三分量候选是另一个函数 `detail_physical_three`，不替换上面的两分量 `detail_physical`：
+
+$$
+R_{\mathrm{phy},q}^{\mathrm{detail,3}}
+=\max(R_{\mathrm{obs},q}^{\mathrm{detail}},R_{\mathrm{kernel},q}^{\mathrm{detail}},R_{\mathrm{spacing},q}^{\mathrm{detail}}).
+$$
+
+三项必须来自同一批局部、同一套权重。Mip-NeRF360 原六层、$\lambda=0.5$ 的 60 个有效局部里，观测 P50/P90 都小于核和间距，因此这一轮三分量数值等于两分量。Kitchen 观测 P50 停在 0.00304 附近；Room 约 0.0068 到 0.0092；Garden 约 0.0059 到 0.0151。这些起伏来自细核组的位置和权重，不是相机变化。
+
 ## 测试结果
 
 下面是 Mip-NeRF360 的 Kitchen、Room、Garden 原六层 L0–L5。主结果取 $\lambda=0.5$，各层对用自身有效集合做逆 CDF 加权中位数。分母固定为 45。单位是各场景自己的坐标长度，场景之间不能比较。Kitchen 五层的有效组合是同一批；Room 五层共同集合只有 1 项；Garden 五层交集为空。

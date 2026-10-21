@@ -40,12 +40,28 @@ def aggregate_quantiles(values, delta_e, eligible, *, lam: float = 0.5, planned:
 
 
 def detail_physical(kernel_p50, kernel_p90, spacing_p50, spacing_p90) -> dict[str, float | None]:
+    """Published two-component physical term. Observation is not included."""
+
     def larger(left, right):
         if left is None or right is None:
             return None
         return float(max(left, right))
 
     return {"p50": larger(kernel_p50, spacing_p50), "p90": larger(kernel_p90, spacing_p90)}
+
+
+def detail_physical_three(obs_p50, obs_p90, kernel_p50, kernel_p90, spacing_p50, spacing_p90) -> dict[str, float | None]:
+    """Candidate max of observation, kernel and spacing. Does not replace detail_physical."""
+
+    def larger(*values):
+        if any(value is None for value in values):
+            return None
+        return float(max(values))
+
+    return {
+        "p50": larger(obs_p50, kernel_p50, spacing_p50),
+        "p90": larger(obs_p90, kernel_p90, spacing_p90),
+    }
 
 
 def summarize_detail(kernel_p50, kernel_p90, spacing_p50, spacing_p90, delta_e, eligible, *, lam: float = 0.5, planned: int | None = None) -> dict[str, float | None]:
