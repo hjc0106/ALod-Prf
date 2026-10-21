@@ -130,63 +130,85 @@ $$
 
 “—”表示不可估。有效数的分母是该场景原来的计划局部数：Kitchen、Room、Garden、Counter、Bonsai、Bicycle、Stump、Train 为 45，Truck 为 108，DrJohnson 为 54，Playroom 为 18。Train 使用机车标定后的米，其余场景用各自的坐标单位，不能跨场景比较绝对大小。观测只做视锥筛选，遮挡未验证。
 
-| 场景 | 层级对 | 核 | 间距 | 观测 | 物理项 | 有效 | 单位 |
-|---|---|---:|---:|---:|---:|---:|---|
-| Kitchen | L0→L1 | 0.065656 / 0.17142 | 0.036913 / 0.046086 | 0.0030439 / 0.0030716 | 0.065656 / 0.17142 | 6/45 | 场景单位 |
-| Kitchen | L1→L2 | 0.046981 / 0.062747 | 0.026571 / 0.035672 | 0.0030425 / 0.0030856 | 0.046981 / 0.062747 | 6/45 | 场景单位 |
-| Kitchen | L2→L3 | 0.036931 / 0.092741 | 0.018778 / 0.033548 | 0.0030398 / 0.0030796 | 0.036931 / 0.092741 | 6/45 | 场景单位 |
-| Kitchen | L3→L4 | 0.02812 / 0.062592 | 0.01291 / 0.023574 | 0.003039 / 0.0030971 | 0.02812 / 0.062592 | 6/45 | 场景单位 |
-| Kitchen | L4→L5 | 0.023381 / 0.044807 | 0.010311 / 0.017792 | 0.0030368 / 0.0030975 | 0.023381 / 0.044807 | 7/45 | 场景单位 |
-| Room | L0→L1 | 0.37713 / 0.45366 | 0.22598 / 0.30125 | 0.0067841 / 0.0083484 | 0.37713 / 0.45366 | 1/45 | 场景单位 |
-| Room | L1→L2 | 0.13201 / 1.1324 | 0.1021 / 0.367 | 0.0089671 / 0.0094071 | 0.13201 / 1.1324 | 3/45 | 场景单位 |
-| Room | L2→L3 | 0.098214 / 0.13502 | 0.054288 / 0.1147 | 0.0092362 / 0.0094897 | 0.098214 / 0.13502 | 3/45 | 场景单位 |
-| Room | L3→L4 | 0.079642 / 0.14066 | 0.04479 / 0.094496 | 0.0090249 / 0.0093735 | 0.079642 / 0.14066 | 3/45 | 场景单位 |
-| Room | L4→L5 | 0.076376 / 0.095605 | 0.036887 / 0.078459 | 0.0089768 / 0.0094282 | 0.076376 / 0.095605 | 3/45 | 场景单位 |
-| Garden | L0→L1 | 0.19631 / 0.37186 | 0.22575 / 0.37167 | 0.015131 / 0.016621 | 0.22575 / 0.37186 | 1/45 | 场景单位 |
-| Garden | L1→L2 | 0.28689 / 0.75924 | 0.21483 / 0.52823 | 0.013736 / 0.016269 | 0.28689 / 0.75924 | 2/45 | 场景单位 |
-| Garden | L2→L3 | 0.14904 / 0.70756 | 0.10984 / 0.41474 | 0.014262 / 0.01667 | 0.14904 / 0.70756 | 3/45 | 场景单位 |
-| Garden | L3→L4 | 0.070337 / 0.15527 | 0.061779 / 0.16151 | 0.013757 / 0.016183 | 0.070337 / 0.16151 | 6/45 | 场景单位 |
-| Garden | L4→L5 | 0.039858 / 0.17116 | 0.020741 / 0.070408 | 0.0059464 / 0.0064164 | 0.039858 / 0.17116 | 4/45 | 场景单位 |
-| Counter | L0→L1 | 0.052353 / 0.13687 | 0.029548 / 0.050094 | 0.0022815 / 0.00239 | 0.052353 / 0.13687 | 6/45 | 场景单位 |
-| Counter | L1→L2 | 0.045201 / 0.098187 | 0.02172 / 0.035549 | 0.0022713 / 0.0023809 | 0.045201 / 0.098187 | 6/45 | 场景单位 |
-| Counter | L2→L3 | 0.036421 / 0.069288 | 0.016959 / 0.032649 | 0.0021719 / 0.0021814 | 0.036421 / 0.069288 | 8/45 | 场景单位 |
-| Counter | L3→L4 | 0.022254 / 0.066246 | 0.0095882 / 0.017444 | 0.0021701 / 0.0021788 | 0.022254 / 0.066246 | 12/45 | 场景单位 |
-| Counter | L4→L5 | 0.019728 / 0.046825 | 0.0096624 / 0.018144 | 0.0021686 / 0.0021803 | 0.019728 / 0.046825 | 9/45 | 场景单位 |
-| Bonsai | L0→L1 | — | — | — | — | 0/45 | 场景单位 |
-| Bonsai | L1→L2 | — | — | — | — | 0/45 | 场景单位 |
-| Bonsai | L2→L3 | — | — | — | — | 0/45 | 场景单位 |
-| Bonsai | L3→L4 | 0.017233 / 0.17751 | 0.0074788 / 0.030649 | 0.0020697 / 0.0021183 | 0.017233 / 0.17751 | 1/45 | 场景单位 |
-| Bonsai | L4→L5 | 0.017019 / 0.080115 | 0.0075303 / 0.012051 | 0.0020593 / 0.00212 | 0.017019 / 0.080115 | 2/45 | 场景单位 |
-| Bicycle | L0→L1 | 0.076627 / 0.17855 | 0.023169 / 0.043079 | 0.0026132 / 0.0028144 | 0.076627 / 0.17855 | 8/45 | 场景单位 |
-| Bicycle | L1→L2 | 0.058055 / 0.097038 | 0.01512 / 0.036507 | 0.0026065 / 0.0028137 | 0.058055 / 0.097038 | 8/45 | 场景单位 |
-| Bicycle | L2→L3 | 0.047344 / 0.082962 | 0.010385 / 0.024529 | 0.002611 / 0.0028157 | 0.047344 / 0.082962 | 8/45 | 场景单位 |
-| Bicycle | L3→L4 | 0.030316 / 0.072788 | 0.0081766 / 0.0196 | 0.0026077 / 0.0028051 | 0.030316 / 0.072788 | 6/45 | 场景单位 |
-| Bicycle | L4→L5 | 0.026694 / 0.066315 | 0.0064018 / 0.015796 | 0.002611 / 0.0028114 | 0.026694 / 0.066315 | 5/45 | 场景单位 |
-| Stump | L0→L1 | 0.071872 / 0.15971 | 0.035494 / 0.060656 | 0.003303 / 0.0033941 | 0.071872 / 0.15971 | 11/45 | 场景单位 |
-| Stump | L1→L2 | 0.056183 / 0.15564 | 0.026247 / 0.044407 | 0.0032781 / 0.0034064 | 0.056183 / 0.15564 | 11/45 | 场景单位 |
-| Stump | L2→L3 | 0.044131 / 0.12181 | 0.020289 / 0.035345 | 0.0032826 / 0.0034051 | 0.044131 / 0.12181 | 11/45 | 场景单位 |
-| Stump | L3→L4 | 0.024535 / 0.078993 | 0.01034 / 0.019012 | 0.0032722 / 0.0034014 | 0.024535 / 0.078993 | 11/45 | 场景单位 |
-| Stump | L4→L5 | 0.020523 / 0.049841 | 0.010803 / 0.017775 | 0.0032804 / 0.0033743 | 0.020523 / 0.049841 | 12/45 | 场景单位 |
-| Truck | L0→L1 | 0.095058 / 0.2227 | 0.028497 / 0.049003 | 0.0043228 / 0.0045787 | 0.095058 / 0.2227 | 6/108 | 场景单位 |
-| Truck | L1→L2 | 0.068207 / 0.1663 | 0.020321 / 0.037081 | 0.0043712 / 0.0045962 | 0.068207 / 0.1663 | 6/108 | 场景单位 |
-| Truck | L2→L3 | 0.052419 / 0.15221 | 0.016324 / 0.029234 | 0.0042631 / 0.0045715 | 0.052419 / 0.15221 | 6/108 | 场景单位 |
-| Truck | L3→L4 | 0.037321 / 0.1192 | 0.0098084 / 0.020844 | 0.0043269 / 0.0046006 | 0.037321 / 0.1192 | 5/108 | 场景单位 |
-| Truck | L4→L5 | 0.033026 / 0.10256 | 0.0096199 / 0.02056 | 0.0041197 / 0.004553 | 0.033026 / 0.10256 | 5/108 | 场景单位 |
-| Train | L0→L1 | 0.39992 / 0.80775 | 0.17488 / 0.42012 | 0.0046957 / 0.0052031 | 0.39992 / 0.80775 | 10/45 | 米 |
-| Train | L1→L2 | 0.3372 / 0.74718 | 0.14217 / 0.38179 | 0.0045597 / 0.0051989 | 0.3372 / 0.74718 | 15/45 | 米 |
-| Train | L2→L3 | 0.3266 / 0.65112 | 0.1056 / 0.24645 | 0.0045478 / 0.0047025 | 0.3266 / 0.65112 | 10/45 | 米 |
-| Train | L3→L4 | 0.16537 / 0.49757 | 0.071209 / 0.12003 | 0.0045696 / 0.0047087 | 0.16537 / 0.49757 | 13/45 | 米 |
-| Train | L4→L5 | 0.17798 / 0.40274 | 0.062048 / 0.14302 | 0.00457 / 0.0047028 | 0.17798 / 0.40274 | 8/45 | 米 |
-| DrJohnson | L0→L1 | 0.10851 / 0.28599 | 0.053421 / 0.068329 | 0.0034535 / 0.0034966 | 0.10851 / 0.28599 | 5/54 | 场景单位 |
-| DrJohnson | L1→L2 | 0.087998 / 0.26022 | 0.031143 / 0.077077 | 0.0034562 / 0.0035067 | 0.087998 / 0.26022 | 5/54 | 场景单位 |
-| DrJohnson | L2→L3 | 0.068044 / 0.21679 | 0.019913 / 0.038288 | 0.0034644 / 0.003507 | 0.068044 / 0.21679 | 5/54 | 场景单位 |
-| DrJohnson | L3→L4 | 0.062172 / 0.18661 | 0.019062 / 0.038712 | 0.0034535 / 0.0035017 | 0.062172 / 0.18661 | 5/54 | 场景单位 |
-| DrJohnson | L4→L5 | 0.032527 / 0.099664 | 0.014439 / 0.034952 | 0.0034738 / 0.0035055 | 0.032527 / 0.099664 | 5/54 | 场景单位 |
-| Playroom | L0→L1 | 0.12557 / 0.27901 | 0.044588 / 0.11372 | 0.00476 / 0.0059707 | 0.12557 / 0.27901 | 6/18 | 场景单位 |
-| Playroom | L1→L2 | 0.13318 / 0.23295 | 0.049067 / 0.096556 | 0.0047938 / 0.0049709 | 0.13318 / 0.23295 | 10/18 | 场景单位 |
-| Playroom | L2→L3 | 0.078129 / 0.19375 | 0.03368 / 0.061826 | 0.0047823 / 0.0049798 | 0.078129 / 0.19375 | 10/18 | 场景单位 |
-| Playroom | L3→L4 | 0.054682 / 0.15076 | 0.019455 / 0.048851 | 0.0047936 / 0.0049874 | 0.054682 / 0.15076 | 11/18 | 场景单位 |
-| Playroom | L4→L5 | 0.064147 / 0.15527 | 0.019471 / 0.060146 | 0.0047831 / 0.0049798 | 0.064147 / 0.15527 | 9/18 | 场景单位 |
+<table>
+<thead><tr>
+<th align="left">场景</th>
+<th align="left">层级对</th>
+<th align="right">核</th>
+<th align="right">间距</th>
+<th align="right">观测</th>
+<th align="right">物理项</th>
+<th align="right">有效</th>
+<th align="left">单位</th>
+</tr></thead>
+<tbody>
+<tr><td align="left">Kitchen</td><td align="left">L0→L1</td><td align="right">0.065656 / 0.17142</td><td align="right">0.036913 / 0.046086</td><td align="right">0.0030439 / 0.0030716</td><td align="right">0.065656 / 0.17142</td><td align="right">6/45</td><td align="left">场景单位</td></tr>
+<tr><td align="left">Kitchen</td><td align="left">L1→L2</td><td align="right">0.046981 / 0.062747</td><td align="right">0.026571 / 0.035672</td><td align="right">0.0030425 / 0.0030856</td><td align="right">0.046981 / 0.062747</td><td align="right">6/45</td><td align="left">场景单位</td></tr>
+<tr><td align="left">Kitchen</td><td align="left">L2→L3</td><td align="right">0.036931 / 0.092741</td><td align="right">0.018778 / 0.033548</td><td align="right">0.0030398 / 0.0030796</td><td align="right">0.036931 / 0.092741</td><td align="right">6/45</td><td align="left">场景单位</td></tr>
+<tr><td align="left">Kitchen</td><td align="left">L3→L4</td><td align="right">0.02812 / 0.062592</td><td align="right">0.01291 / 0.023574</td><td align="right">0.003039 / 0.0030971</td><td align="right">0.02812 / 0.062592</td><td align="right">6/45</td><td align="left">场景单位</td></tr>
+<tr><td align="left">Kitchen</td><td align="left">L4→L5</td><td align="right">0.023381 / 0.044807</td><td align="right">0.010311 / 0.017792</td><td align="right">0.0030368 / 0.0030975</td><td align="right">0.023381 / 0.044807</td><td align="right">7/45</td><td align="left">场景单位</td></tr>
+<tr><td colspan="8"><img src="results/scene-rule.png" alt="" width="100%" height="12"></td></tr>
+<tr><td align="left">Room</td><td align="left">L0→L1</td><td align="right">0.37713 / 0.45366</td><td align="right">0.22598 / 0.30125</td><td align="right">0.0067841 / 0.0083484</td><td align="right">0.37713 / 0.45366</td><td align="right">1/45</td><td align="left">场景单位</td></tr>
+<tr><td align="left">Room</td><td align="left">L1→L2</td><td align="right">0.13201 / 1.1324</td><td align="right">0.1021 / 0.367</td><td align="right">0.0089671 / 0.0094071</td><td align="right">0.13201 / 1.1324</td><td align="right">3/45</td><td align="left">场景单位</td></tr>
+<tr><td align="left">Room</td><td align="left">L2→L3</td><td align="right">0.098214 / 0.13502</td><td align="right">0.054288 / 0.1147</td><td align="right">0.0092362 / 0.0094897</td><td align="right">0.098214 / 0.13502</td><td align="right">3/45</td><td align="left">场景单位</td></tr>
+<tr><td align="left">Room</td><td align="left">L3→L4</td><td align="right">0.079642 / 0.14066</td><td align="right">0.04479 / 0.094496</td><td align="right">0.0090249 / 0.0093735</td><td align="right">0.079642 / 0.14066</td><td align="right">3/45</td><td align="left">场景单位</td></tr>
+<tr><td align="left">Room</td><td align="left">L4→L5</td><td align="right">0.076376 / 0.095605</td><td align="right">0.036887 / 0.078459</td><td align="right">0.0089768 / 0.0094282</td><td align="right">0.076376 / 0.095605</td><td align="right">3/45</td><td align="left">场景单位</td></tr>
+<tr><td colspan="8"><img src="results/scene-rule.png" alt="" width="100%" height="12"></td></tr>
+<tr><td align="left">Garden</td><td align="left">L0→L1</td><td align="right">0.19631 / 0.37186</td><td align="right">0.22575 / 0.37167</td><td align="right">0.015131 / 0.016621</td><td align="right">0.22575 / 0.37186</td><td align="right">1/45</td><td align="left">场景单位</td></tr>
+<tr><td align="left">Garden</td><td align="left">L1→L2</td><td align="right">0.28689 / 0.75924</td><td align="right">0.21483 / 0.52823</td><td align="right">0.013736 / 0.016269</td><td align="right">0.28689 / 0.75924</td><td align="right">2/45</td><td align="left">场景单位</td></tr>
+<tr><td align="left">Garden</td><td align="left">L2→L3</td><td align="right">0.14904 / 0.70756</td><td align="right">0.10984 / 0.41474</td><td align="right">0.014262 / 0.01667</td><td align="right">0.14904 / 0.70756</td><td align="right">3/45</td><td align="left">场景单位</td></tr>
+<tr><td align="left">Garden</td><td align="left">L3→L4</td><td align="right">0.070337 / 0.15527</td><td align="right">0.061779 / 0.16151</td><td align="right">0.013757 / 0.016183</td><td align="right">0.070337 / 0.16151</td><td align="right">6/45</td><td align="left">场景单位</td></tr>
+<tr><td align="left">Garden</td><td align="left">L4→L5</td><td align="right">0.039858 / 0.17116</td><td align="right">0.020741 / 0.070408</td><td align="right">0.0059464 / 0.0064164</td><td align="right">0.039858 / 0.17116</td><td align="right">4/45</td><td align="left">场景单位</td></tr>
+<tr><td colspan="8"><img src="results/scene-rule.png" alt="" width="100%" height="12"></td></tr>
+<tr><td align="left">Counter</td><td align="left">L0→L1</td><td align="right">0.052353 / 0.13687</td><td align="right">0.029548 / 0.050094</td><td align="right">0.0022815 / 0.00239</td><td align="right">0.052353 / 0.13687</td><td align="right">6/45</td><td align="left">场景单位</td></tr>
+<tr><td align="left">Counter</td><td align="left">L1→L2</td><td align="right">0.045201 / 0.098187</td><td align="right">0.02172 / 0.035549</td><td align="right">0.0022713 / 0.0023809</td><td align="right">0.045201 / 0.098187</td><td align="right">6/45</td><td align="left">场景单位</td></tr>
+<tr><td align="left">Counter</td><td align="left">L2→L3</td><td align="right">0.036421 / 0.069288</td><td align="right">0.016959 / 0.032649</td><td align="right">0.0021719 / 0.0021814</td><td align="right">0.036421 / 0.069288</td><td align="right">8/45</td><td align="left">场景单位</td></tr>
+<tr><td align="left">Counter</td><td align="left">L3→L4</td><td align="right">0.022254 / 0.066246</td><td align="right">0.0095882 / 0.017444</td><td align="right">0.0021701 / 0.0021788</td><td align="right">0.022254 / 0.066246</td><td align="right">12/45</td><td align="left">场景单位</td></tr>
+<tr><td align="left">Counter</td><td align="left">L4→L5</td><td align="right">0.019728 / 0.046825</td><td align="right">0.0096624 / 0.018144</td><td align="right">0.0021686 / 0.0021803</td><td align="right">0.019728 / 0.046825</td><td align="right">9/45</td><td align="left">场景单位</td></tr>
+<tr><td colspan="8"><img src="results/scene-rule.png" alt="" width="100%" height="12"></td></tr>
+<tr><td align="left">Bonsai</td><td align="left">L0→L1</td><td align="right">—</td><td align="right">—</td><td align="right">—</td><td align="right">—</td><td align="right">0/45</td><td align="left">场景单位</td></tr>
+<tr><td align="left">Bonsai</td><td align="left">L1→L2</td><td align="right">—</td><td align="right">—</td><td align="right">—</td><td align="right">—</td><td align="right">0/45</td><td align="left">场景单位</td></tr>
+<tr><td align="left">Bonsai</td><td align="left">L2→L3</td><td align="right">—</td><td align="right">—</td><td align="right">—</td><td align="right">—</td><td align="right">0/45</td><td align="left">场景单位</td></tr>
+<tr><td align="left">Bonsai</td><td align="left">L3→L4</td><td align="right">0.017233 / 0.17751</td><td align="right">0.0074788 / 0.030649</td><td align="right">0.0020697 / 0.0021183</td><td align="right">0.017233 / 0.17751</td><td align="right">1/45</td><td align="left">场景单位</td></tr>
+<tr><td align="left">Bonsai</td><td align="left">L4→L5</td><td align="right">0.017019 / 0.080115</td><td align="right">0.0075303 / 0.012051</td><td align="right">0.0020593 / 0.00212</td><td align="right">0.017019 / 0.080115</td><td align="right">2/45</td><td align="left">场景单位</td></tr>
+<tr><td colspan="8"><img src="results/scene-rule.png" alt="" width="100%" height="12"></td></tr>
+<tr><td align="left">Bicycle</td><td align="left">L0→L1</td><td align="right">0.076627 / 0.17855</td><td align="right">0.023169 / 0.043079</td><td align="right">0.0026132 / 0.0028144</td><td align="right">0.076627 / 0.17855</td><td align="right">8/45</td><td align="left">场景单位</td></tr>
+<tr><td align="left">Bicycle</td><td align="left">L1→L2</td><td align="right">0.058055 / 0.097038</td><td align="right">0.01512 / 0.036507</td><td align="right">0.0026065 / 0.0028137</td><td align="right">0.058055 / 0.097038</td><td align="right">8/45</td><td align="left">场景单位</td></tr>
+<tr><td align="left">Bicycle</td><td align="left">L2→L3</td><td align="right">0.047344 / 0.082962</td><td align="right">0.010385 / 0.024529</td><td align="right">0.002611 / 0.0028157</td><td align="right">0.047344 / 0.082962</td><td align="right">8/45</td><td align="left">场景单位</td></tr>
+<tr><td align="left">Bicycle</td><td align="left">L3→L4</td><td align="right">0.030316 / 0.072788</td><td align="right">0.0081766 / 0.0196</td><td align="right">0.0026077 / 0.0028051</td><td align="right">0.030316 / 0.072788</td><td align="right">6/45</td><td align="left">场景单位</td></tr>
+<tr><td align="left">Bicycle</td><td align="left">L4→L5</td><td align="right">0.026694 / 0.066315</td><td align="right">0.0064018 / 0.015796</td><td align="right">0.002611 / 0.0028114</td><td align="right">0.026694 / 0.066315</td><td align="right">5/45</td><td align="left">场景单位</td></tr>
+<tr><td colspan="8"><img src="results/scene-rule.png" alt="" width="100%" height="12"></td></tr>
+<tr><td align="left">Stump</td><td align="left">L0→L1</td><td align="right">0.071872 / 0.15971</td><td align="right">0.035494 / 0.060656</td><td align="right">0.003303 / 0.0033941</td><td align="right">0.071872 / 0.15971</td><td align="right">11/45</td><td align="left">场景单位</td></tr>
+<tr><td align="left">Stump</td><td align="left">L1→L2</td><td align="right">0.056183 / 0.15564</td><td align="right">0.026247 / 0.044407</td><td align="right">0.0032781 / 0.0034064</td><td align="right">0.056183 / 0.15564</td><td align="right">11/45</td><td align="left">场景单位</td></tr>
+<tr><td align="left">Stump</td><td align="left">L2→L3</td><td align="right">0.044131 / 0.12181</td><td align="right">0.020289 / 0.035345</td><td align="right">0.0032826 / 0.0034051</td><td align="right">0.044131 / 0.12181</td><td align="right">11/45</td><td align="left">场景单位</td></tr>
+<tr><td align="left">Stump</td><td align="left">L3→L4</td><td align="right">0.024535 / 0.078993</td><td align="right">0.01034 / 0.019012</td><td align="right">0.0032722 / 0.0034014</td><td align="right">0.024535 / 0.078993</td><td align="right">11/45</td><td align="left">场景单位</td></tr>
+<tr><td align="left">Stump</td><td align="left">L4→L5</td><td align="right">0.020523 / 0.049841</td><td align="right">0.010803 / 0.017775</td><td align="right">0.0032804 / 0.0033743</td><td align="right">0.020523 / 0.049841</td><td align="right">12/45</td><td align="left">场景单位</td></tr>
+<tr><td colspan="8"><img src="results/scene-rule.png" alt="" width="100%" height="12"></td></tr>
+<tr><td align="left">Truck</td><td align="left">L0→L1</td><td align="right">0.095058 / 0.2227</td><td align="right">0.028497 / 0.049003</td><td align="right">0.0043228 / 0.0045787</td><td align="right">0.095058 / 0.2227</td><td align="right">6/108</td><td align="left">场景单位</td></tr>
+<tr><td align="left">Truck</td><td align="left">L1→L2</td><td align="right">0.068207 / 0.1663</td><td align="right">0.020321 / 0.037081</td><td align="right">0.0043712 / 0.0045962</td><td align="right">0.068207 / 0.1663</td><td align="right">6/108</td><td align="left">场景单位</td></tr>
+<tr><td align="left">Truck</td><td align="left">L2→L3</td><td align="right">0.052419 / 0.15221</td><td align="right">0.016324 / 0.029234</td><td align="right">0.0042631 / 0.0045715</td><td align="right">0.052419 / 0.15221</td><td align="right">6/108</td><td align="left">场景单位</td></tr>
+<tr><td align="left">Truck</td><td align="left">L3→L4</td><td align="right">0.037321 / 0.1192</td><td align="right">0.0098084 / 0.020844</td><td align="right">0.0043269 / 0.0046006</td><td align="right">0.037321 / 0.1192</td><td align="right">5/108</td><td align="left">场景单位</td></tr>
+<tr><td align="left">Truck</td><td align="left">L4→L5</td><td align="right">0.033026 / 0.10256</td><td align="right">0.0096199 / 0.02056</td><td align="right">0.0041197 / 0.004553</td><td align="right">0.033026 / 0.10256</td><td align="right">5/108</td><td align="left">场景单位</td></tr>
+<tr><td colspan="8"><img src="results/scene-rule.png" alt="" width="100%" height="12"></td></tr>
+<tr><td align="left">Train</td><td align="left">L0→L1</td><td align="right">0.39992 / 0.80775</td><td align="right">0.17488 / 0.42012</td><td align="right">0.0046957 / 0.0052031</td><td align="right">0.39992 / 0.80775</td><td align="right">10/45</td><td align="left">米</td></tr>
+<tr><td align="left">Train</td><td align="left">L1→L2</td><td align="right">0.3372 / 0.74718</td><td align="right">0.14217 / 0.38179</td><td align="right">0.0045597 / 0.0051989</td><td align="right">0.3372 / 0.74718</td><td align="right">15/45</td><td align="left">米</td></tr>
+<tr><td align="left">Train</td><td align="left">L2→L3</td><td align="right">0.3266 / 0.65112</td><td align="right">0.1056 / 0.24645</td><td align="right">0.0045478 / 0.0047025</td><td align="right">0.3266 / 0.65112</td><td align="right">10/45</td><td align="left">米</td></tr>
+<tr><td align="left">Train</td><td align="left">L3→L4</td><td align="right">0.16537 / 0.49757</td><td align="right">0.071209 / 0.12003</td><td align="right">0.0045696 / 0.0047087</td><td align="right">0.16537 / 0.49757</td><td align="right">13/45</td><td align="left">米</td></tr>
+<tr><td align="left">Train</td><td align="left">L4→L5</td><td align="right">0.17798 / 0.40274</td><td align="right">0.062048 / 0.14302</td><td align="right">0.00457 / 0.0047028</td><td align="right">0.17798 / 0.40274</td><td align="right">8/45</td><td align="left">米</td></tr>
+<tr><td colspan="8"><img src="results/scene-rule.png" alt="" width="100%" height="12"></td></tr>
+<tr><td align="left">DrJohnson</td><td align="left">L0→L1</td><td align="right">0.10851 / 0.28599</td><td align="right">0.053421 / 0.068329</td><td align="right">0.0034535 / 0.0034966</td><td align="right">0.10851 / 0.28599</td><td align="right">5/54</td><td align="left">场景单位</td></tr>
+<tr><td align="left">DrJohnson</td><td align="left">L1→L2</td><td align="right">0.087998 / 0.26022</td><td align="right">0.031143 / 0.077077</td><td align="right">0.0034562 / 0.0035067</td><td align="right">0.087998 / 0.26022</td><td align="right">5/54</td><td align="left">场景单位</td></tr>
+<tr><td align="left">DrJohnson</td><td align="left">L2→L3</td><td align="right">0.068044 / 0.21679</td><td align="right">0.019913 / 0.038288</td><td align="right">0.0034644 / 0.003507</td><td align="right">0.068044 / 0.21679</td><td align="right">5/54</td><td align="left">场景单位</td></tr>
+<tr><td align="left">DrJohnson</td><td align="left">L3→L4</td><td align="right">0.062172 / 0.18661</td><td align="right">0.019062 / 0.038712</td><td align="right">0.0034535 / 0.0035017</td><td align="right">0.062172 / 0.18661</td><td align="right">5/54</td><td align="left">场景单位</td></tr>
+<tr><td align="left">DrJohnson</td><td align="left">L4→L5</td><td align="right">0.032527 / 0.099664</td><td align="right">0.014439 / 0.034952</td><td align="right">0.0034738 / 0.0035055</td><td align="right">0.032527 / 0.099664</td><td align="right">5/54</td><td align="left">场景单位</td></tr>
+<tr><td colspan="8"><img src="results/scene-rule.png" alt="" width="100%" height="12"></td></tr>
+<tr><td align="left">Playroom</td><td align="left">L0→L1</td><td align="right">0.12557 / 0.27901</td><td align="right">0.044588 / 0.11372</td><td align="right">0.00476 / 0.0059707</td><td align="right">0.12557 / 0.27901</td><td align="right">6/18</td><td align="left">场景单位</td></tr>
+<tr><td align="left">Playroom</td><td align="left">L1→L2</td><td align="right">0.13318 / 0.23295</td><td align="right">0.049067 / 0.096556</td><td align="right">0.0047938 / 0.0049709</td><td align="right">0.13318 / 0.23295</td><td align="right">10/18</td><td align="left">场景单位</td></tr>
+<tr><td align="left">Playroom</td><td align="left">L2→L3</td><td align="right">0.078129 / 0.19375</td><td align="right">0.03368 / 0.061826</td><td align="right">0.0047823 / 0.0049798</td><td align="right">0.078129 / 0.19375</td><td align="right">10/18</td><td align="left">场景单位</td></tr>
+<tr><td align="left">Playroom</td><td align="left">L3→L4</td><td align="right">0.054682 / 0.15076</td><td align="right">0.019455 / 0.048851</td><td align="right">0.0047936 / 0.0049874</td><td align="right">0.054682 / 0.15076</td><td align="right">11/18</td><td align="left">场景单位</td></tr>
+<tr><td align="left">Playroom</td><td align="left">L4→L5</td><td align="right">0.064147 / 0.15527</td><td align="right">0.019471 / 0.060146</td><td align="right">0.0047831 / 0.0049798</td><td align="right">0.064147 / 0.15527</td><td align="right">9/18</td><td align="left">场景单位</td></tr>
+</tbody>
+</table>
 
 52 个层级对可估。Bonsai 的前三个层级对没有共同有效项。
 
