@@ -21,7 +21,7 @@ pip install -e .
 from prf_detail import (
     covariance_world, directional_scale, directional_tangent,
     detail_kernel_quantiles, detail_spacing_quantiles, neighbor_spacing,
-    summarize_detail,
+    observation_resolutions, detail_observation_quantiles, summarize_detail,
 )
 
 tangent = directional_tangent(tangent_1, tangent_2, direction_deg=0.0)
@@ -31,6 +31,7 @@ kernel = detail_kernel_quantiles(child, parent, expanded, visible_weights)
 
 spacing, accepted = neighbor_spacing(pool_xy, query_xy, own_index, k=6, eps=eps, margin=margin)
 local_spacing = detail_spacing_quantiles(spacing, accepted, visible_weights)
+obs = detail_observation_quantiles(plane_points, tangent_1, tangent_2, training_views, visible_weights)
 
 summary = summarize_detail(
     obs_p50, obs_p90, kernel_p50, kernel_p90, spacing_p50, spacing_p90,
@@ -121,7 +122,36 @@ $$
 r_{\mathrm{obs}}(x)=\min_{(a,b)}\max(r_a(x),r_b(x)).
 $$
 
-细核中心先投影到冻结平面再查询。局部值仍是可见权重逆 CDF，场景汇总仍用上面的 $g\_j,w\_j$。没有有效相机对就留空。只做视锥筛选时，结果必须标明遮挡尚未验证。
+细核中心先投影到冻结平面，再用 `observation_resolutions` 查询。它按上面的雅可比和相机对直接算出每个位置的 $r\_{\mathrm{obs}}(x)$；`detail_observation_quantiles` 继续用可见权重取 P50/P90。没有有效相机对就留空。只做视锥筛选时，结果必须标明遮挡尚未验证。
+
+### 另外四个场景的 P50
+
+Counter、Bonsai、Bicycle、Stump 的原六层，主结果 $\lambda=0.5$，四项使用相同有效局部和权重。单位仍是各场景自己的坐标长度。“—”表示不可估。
+
+| 场景 | 层级对 | 核 | 间距 | 观测 | 物理项 | 有效/45 |
+|---|---|---:|---:|---:|---:|---:|
+| Counter | L0→L1 | 0.05235 | 0.02955 | 0.002282 | 0.05235 | 6 |
+| Counter | L1→L2 | 0.04520 | 0.02172 | 0.002271 | 0.04520 | 6 |
+| Counter | L2→L3 | 0.03642 | 0.01696 | 0.002172 | 0.03642 | 8 |
+| Counter | L3→L4 | 0.02225 | 0.009588 | 0.002170 | 0.02225 | 12 |
+| Counter | L4→L5 | 0.01973 | 0.009662 | 0.002169 | 0.01973 | 9 |
+| Bonsai | L0→L1 | — | — | — | — | 0 |
+| Bonsai | L1→L2 | — | — | — | — | 0 |
+| Bonsai | L2→L3 | — | — | — | — | 0 |
+| Bonsai | L3→L4 | 0.01723 | 0.007479 | 0.002070 | 0.01723 | 1 |
+| Bonsai | L4→L5 | 0.01702 | 0.007530 | 0.002059 | 0.01702 | 2 |
+| Bicycle | L0→L1 | 0.07663 | 0.02317 | 0.002613 | 0.07663 | 8 |
+| Bicycle | L1→L2 | 0.05805 | 0.01512 | 0.002607 | 0.05805 | 8 |
+| Bicycle | L2→L3 | 0.04734 | 0.01038 | 0.002611 | 0.04734 | 8 |
+| Bicycle | L3→L4 | 0.03032 | 0.008177 | 0.002608 | 0.03032 | 6 |
+| Bicycle | L4→L5 | 0.02669 | 0.006402 | 0.002611 | 0.02669 | 5 |
+| Stump | L0→L1 | 0.07187 | 0.03549 | 0.003303 | 0.07187 | 11 |
+| Stump | L1→L2 | 0.05618 | 0.02625 | 0.003278 | 0.05618 | 11 |
+| Stump | L2→L3 | 0.04413 | 0.02029 | 0.003283 | 0.04413 | 11 |
+| Stump | L3→L4 | 0.02454 | 0.01034 | 0.003272 | 0.02454 | 11 |
+| Stump | L4→L5 | 0.02052 | 0.01080 | 0.003280 | 0.02052 | 12 |
+
+20 个层级对里 17 个可估。Bonsai 前三个层级对没有共同有效项。这 17 个主结果的物理项 P50 和 P90 都由核决定。Counter、Bonsai、Stump 的间距 P50 在最后一步有小幅回升。有效集合有限，而且可以跨层变化。
 
 `detail_physical` 就是上面的三分量最大值。Mip-NeRF360 原六层、$\lambda=0.5$ 的 60 个有效局部里，观测 P50/P90 都小于核和间距，所以这一轮物理项的数值由核或间距决定。Kitchen 观测 P50 停在 0.00304 附近；Room 约 0.0068 到 0.0092；Garden 约 0.0059 到 0.0151。这些起伏来自细核组的位置和权重，不是相机变化。
 
