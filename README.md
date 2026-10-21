@@ -33,10 +33,10 @@ spacing, accepted = neighbor_spacing(pool_xy, query_xy, own_index, k=6, eps=eps,
 local_spacing = detail_spacing_quantiles(spacing, accepted, visible_weights)
 
 summary = summarize_detail(
-    kernel_p50, kernel_p90, spacing_p50, spacing_p90,
+    obs_p50, obs_p90, kernel_p50, kernel_p90, spacing_p50, spacing_p90,
     delta_e, eligible, lam=0.5, planned=45,
 )
-print(summary["kernel_p50"], summary["spacing_p50"], summary["phy_p50"])
+print(summary["obs_p50"], summary["kernel_p50"], summary["spacing_p50"], summary["phy_p50"])
 ```
 
 ## 计算公式
